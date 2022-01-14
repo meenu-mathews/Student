@@ -11,24 +11,24 @@ public class Student {
         this.group = group;
     }
 
-    private String getName(){
+    protected String getName(){
         return name;
     }
-    private void setName(String name){
+    public void setName(String name){
         this.name = name;
     }
-    private char getGrade(){
+    protected char getGrade(){
         return grade;
     }
     public void setGrade(char grade){
         this.grade = grade;
     }
-    private char downGrade(){
+    protected char downGrade(){
         if(grade>='A' && grade <= 'E' )
             grade++;
         return grade;
     }
-    private char upGrade(){
+    protected char upGrade(){
         if(grade >= 'B' && grade<='E')
             grade--;
         return grade;
@@ -39,10 +39,8 @@ public class Student {
     public void setGroup(int group){
         this.group = group;
     }
-
-    public static void main(String[] args) {
-        Student stud = new Student("John",'A','1');
-
+    private String getSecretNickName(){
+        return secretNickName;
     }
 }
 
