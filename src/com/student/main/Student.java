@@ -1,9 +1,15 @@
 package com.student.main;
 public class Student {
     public String name;
-    public char grade;
-    public int group;
+    public char grade; //A, B, C, D, E, F
+    public int group; //1, 2, 3, 4, 5
     private final String secretNickName = "MySecretNickName";
+
+    public Student(String name, char grade, int group){
+        this.name = name;
+        this.grade = grade;
+        this.group = group;
+    }
 
     private String getName(){
         return name;
@@ -14,12 +20,15 @@ public class Student {
     private char getGrade(){
         return grade;
     }
-    private char upGrade(char grade){
+    public void setGrade(char grade){
+        this.grade = grade;
+    }
+    private char downGrade(){
         if(grade>='A' && grade <= 'E' )
             grade++;
         return grade;
     }
-    private char downGrade(char grade){
+    private char upGrade(){
         if(grade >= 'B' && grade<='E')
             grade--;
         return grade;
@@ -30,7 +39,10 @@ public class Student {
     public void setGroup(int group){
         this.group = group;
     }
-    private String getSecretNickName(){
-        return secretNickName;
+
+    public static void main(String[] args) {
+        Student stud = new Student("John",'A','1');
+
     }
 }
+
