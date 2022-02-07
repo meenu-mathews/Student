@@ -3,18 +3,19 @@
 skinparam classAttributeIconSize 0
 class Student{
     + String name
-    + String grade[] = ["A","B","C","D","E","F"]
-    + int group[] = [1,2,3,4,5]
+    + char grade
+    + int group
     - final String secretNickName = "MySecretNickName"
 
-    + Student (String name, String grade, int group)
-    -getName() : String
+    + Student (String name, char grade, int group)
+    #getName() : String
     -setName() : void
-    -getGrade() : String
-    -upGrade(String grade) : String
-    -downGrade(String grade) : String
+    #getGrade() : String
+    #upGrade(String grade) : String
+    #downGrade(String grade) : String
     +getGroup() : String
     +setGroup() : void
+    -getSecretNickName() : String
 }
 
 @enduml

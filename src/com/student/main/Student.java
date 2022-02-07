@@ -1,14 +1,29 @@
 package com.student.main;
 public class Student {
-    public String name;
-    public char grade; //A, B, C, D, E, F
-    public int group; //1, 2, 3, 4, 5
-    private final String secretNickName = "MySecretNickName";
+    private String name;
 
-    public Student(String name, char grade, int group){
+
+
+    enum Grade {
+        A, B, C, D, E, F;
+        private static Grade[] grades = values();
+
+        public Grade next() {
+            return grades[(this.ordinal() + 1) % grades.length];
+        }
+        public Grade prev() {
+            return grades[(this.ordinal() - 1) % grades.length];
+        }
+    }
+    private Grade grade_enum;
+    enum Group {One, Two, Three, Four, Five};
+    private Group group_enum;
+    private final String SECRETNICKNAME = "MySecretNickName";
+
+    public Student(String name, Grade grade_enum, Group group_enum){
         this.name = name;
-        this.grade = grade;
-        this.group = group;
+        this.grade_enum = grade_enum;
+        this.group_enum = group_enum;
     }
 
     protected String getName(){
@@ -17,30 +32,35 @@ public class Student {
     public void setName(String name){
         this.name = name;
     }
-    protected char getGrade(){
-        return grade;
+    public Grade getGrade_enum(){
+        return grade_enum;
     }
-    public void setGrade(char grade){
-        this.grade = grade;
+    protected String downGrade(){
+        System.out.println(grade_enum.prev().name());
+        if(getGrade_enum().name().equals("F"))
+            System.out.println("Grade F cannot be downgraded further");
+        else
+            return grade_enum.name();
+
+        return grade_enum.name();
+
     }
-    protected char downGrade(){
-        if(grade>='A' && grade <= 'E' )
-            grade++;
-        return grade;
-    }
-    protected char upGrade(){
-        if(grade >= 'B' && grade<='E')
-            grade--;
-        return grade;
+    protected String upGrade(){
+        if(getGrade_enum().name().equals("A"))
+            System.out.println("Grade A cannot be upgraded further");
+        else
+            return grade_enum.next().name();
+
+        return grade_enum.name();
     }
     public int getGroup(){
-        return group;
+        return group_enum.ordinal();
     }
-    public void setGroup(int group){
-        this.group = group;
+    public void setGroup(Group group){
+        this.group_enum = group;
     }
     private String getSecretNickName(){
-        return secretNickName;
+        return SECRETNICKNAME;
     }
 }
 
