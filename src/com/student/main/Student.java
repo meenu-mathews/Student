@@ -12,7 +12,7 @@ public class Student {
             return grades[(this.ordinal() + 1) % grades.length];
         }
         public Grade prev() {
-            return grades[(this.ordinal() - 1) % grades.length];
+                return grades[(this.ordinal() - 1) % grades.length];
         }
     }
     private Grade grade_enum;
@@ -35,19 +35,20 @@ public class Student {
     public Grade getGrade_enum(){
         return grade_enum;
     }
-    protected String downGrade(){
+    protected String upGrade(){
         System.out.println(grade_enum.prev().name());
-        if(getGrade_enum().name().equals("F"))
+        if(getGrade_enum().name().equals(Grade.F))
             System.out.println("Grade F cannot be downgraded further");
-        else
-            return grade_enum.name();
+        else if(getGrade_enum().ordinal() != Grade.grades.length) {
+            return grade_enum.prev().name();
+        }
 
         return grade_enum.name();
 
     }
-    protected String upGrade(){
-        if(getGrade_enum().name().equals("A"))
-            System.out.println("Grade A cannot be upgraded further");
+    protected String downGrade(){
+        if(getGrade_enum().name().equals(Grade.F))
+            System.out.println("Grade F cannot be upgraded further");
         else
             return grade_enum.next().name();
 
