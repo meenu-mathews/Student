@@ -1,9 +1,6 @@
 package com.student.main;
 public class Student {
     private String name;
-
-
-
     enum Grade {
         A, B, C, D, E, F;
         private static Grade[] grades = values();
@@ -12,7 +9,8 @@ public class Student {
             return grades[(this.ordinal() + 1) % grades.length];
         }
         public Grade prev() {
-                return grades[(this.ordinal() - 1) % grades.length];
+            System.out.println(grades[(this.ordinal() - 1) % grades.length]);
+            return grades[(this.ordinal() - 1) % grades.length];
         }
     }
     private Grade grade_enum;
@@ -35,24 +33,27 @@ public class Student {
     public Grade getGrade_enum(){
         return grade_enum;
     }
-    protected String upGrade(){
-        System.out.println(grade_enum.prev().name());
-        if(getGrade_enum().name().equals(Grade.F))
-            System.out.println("Grade F cannot be downgraded further");
-        else if(getGrade_enum().ordinal() != Grade.grades.length) {
-            return grade_enum.prev().name();
-        }
+    protected Grade upGrade(){
+        if(getGrade_enum().equals(Grade.A))
+            System.out.println("Grade A cannot be upgraded further");
+       grade_enum.prev();
 
-        return grade_enum.name();
+       grade_enum.prev();
+       grade_enum.prev();
+       grade_enum.prev();
+       grade_enum.prev();
+
+
+        return grade_enum;
 
     }
-    protected String downGrade(){
-        if(getGrade_enum().name().equals(Grade.F))
-            System.out.println("Grade F cannot be upgraded further");
-        else
-            return grade_enum.next().name();
-
-        return grade_enum.name();
+    protected Grade downGrade(){
+        if(getGrade_enum().equals(Grade.F))
+            System.out.println("Grade F cannot be downgraded further");
+        else if(getGrade_enum().ordinal() != Grade.grades.length)
+            this.grade_enum =  grade_enum.next();
+System.out.println(grade_enum);
+        return grade_enum;
     }
     public int getGroup(){
         return group_enum.ordinal();
